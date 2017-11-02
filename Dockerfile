@@ -73,11 +73,11 @@ RUN useradd -r -u 200 -m -c "nexus role account" -d ${NEXUS_DATA} -s /bin/false 
   && ln -s ${NEXUS_DATA} ${SONATYPE_WORK}/nexus3 \
   && chown -R nexus:nexus ${NEXUS_DATA}
 
-VOLUME ${NEXUS_DATA}
+VOLUME /nexus-data
 
 EXPOSE 8081
 USER nexus
-WORKDIR ${NEXUS_HOME}
+WORKDIR /nexus-data
 
 ENV INSTALL4J_ADD_VM_PARAMS="-Xms1200m -Xmx1200m -XX:MaxDirectMemorySize=2g -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs"
 
