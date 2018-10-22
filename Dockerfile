@@ -16,11 +16,14 @@ FROM       sonatype/nexus3
 
 MAINTAINER guox <guox@goodrain.com>
 
+USER root
+
 COPY memset.sh /
 
-RUN source /memset.sh
+RUN sed -i -e "2 a. /memset.sh" \
+           -e '3 aINSTALL4J_ADD_VM_PARAMS="${JAVA_OPTS} -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs"' ${SONATYPE_DIR}/start-nexus-repository-manager.sh
 
-ENV INSTALL4J_ADD_VM_PARAMS="${JAVA_OPTS} -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs"
+VOLUME ["${NEXUS_DATA}"]
 
 CMD ["sh", "-c", "${SONATYPE_DIR}/start-nexus-repository-manager.sh"]
 

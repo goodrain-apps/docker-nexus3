@@ -44,6 +44,3 @@ else
   default_java_opts="${default_java_mem_opts}"
   export JAVA_OPTS="${default_java_opts} $JAVA_OPTS"
 fi
-
-cd /opt/sonatype/nexus
-exec ./bin/nexus run
