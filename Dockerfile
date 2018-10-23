@@ -18,6 +18,8 @@ MAINTAINER guox <guox@goodrain.com>
 
 USER root
 
+ENV TZ=Asia/Shanghai
+
 COPY memset.sh /
 
 RUN sed -i -e "2 a. /memset.sh" \
