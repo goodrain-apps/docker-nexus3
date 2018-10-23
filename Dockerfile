@@ -25,7 +25,7 @@ COPY memset.sh /
 RUN sed -i -e "2 a. /memset.sh" \
            -e '3 aINSTALL4J_ADD_VM_PARAMS="${JAVA_OPTS} -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs"' ${SONATYPE_DIR}/start-nexus-repository-manager.sh
 
-VOLUME ["${NEXUS_DATA}"]
+VOLUME ["/nexus-data"]
 
 CMD ["sh", "-c", "${SONATYPE_DIR}/start-nexus-repository-manager.sh"]
 

@@ -1,4 +1,5 @@
 # set default_java_mem_opts
+# set default_java_mem_opts
 case ${MEMORY_SIZE:-small} in
     "micro")
        export default_java_mem_opts="-Xms90m -Xmx90m -Xss512k  -XX:MaxDirectMemorySize=12M"
@@ -39,8 +40,8 @@ case ${MEMORY_SIZE:-small} in
 esac
 
 if [[ "${JAVA_OPTS}" == *-Xmx* ]]; then
-  export JAVA_TOOL_OPTIONS=${JAVA_TOOL_OPTIONS}
+  export JAVA_TOOL_OPTIONS=${JAVA_TOOL_OPTIONS:-"-Dfile.encoding=UTF-8"}
 else
-  default_java_opts="${default_java_mem_opts}"
+  default_java_opts="${default_java_mem_opts} -Dfile.encoding=UTF-8"
   export JAVA_OPTS="${default_java_opts} $JAVA_OPTS"
 fi
