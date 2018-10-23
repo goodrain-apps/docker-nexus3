@@ -27,6 +27,8 @@ RUN sed -i -e "2 a. /memset.sh" \
 
 VOLUME ["/nexus-data"]
 
+EXPOSE 8081
+
 CMD ["sh", "-c", "${SONATYPE_DIR}/start-nexus-repository-manager.sh"]
 
 
